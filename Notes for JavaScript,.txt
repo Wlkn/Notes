@@ -1,0 +1,71 @@
+Notes for JavaScript,
+Goals:
+How to structure and group information in your app with data types.
+
+How to use programming logic so your app does what you want it to.
+
+How to manage errors and make your app communicate.
+
+How to write readable code so you can more easily modify, maintain, and share your apps.
+----------------------------------------------------------------
+ VARIABLES:
+
+Try to use a descriptive name for your so instead of amount, or amt.use
+quantityInStock or currentBalance.
+To Declare a variable you do: "Let" 
+let numberofepisodes = 6;
+Now theses can be changed since it's not a constant
+We could do :
+let numbernumberofepisodes = 5;
+numberofepisodes = 10
+console.log(numbernumberofepisodes); it would say 10.
+BUT if we do, const numbernumberofepisodes = 10; we can't change it since it becomes read only.
+A type is the kind of data you store in it.
+It can be divided in 6 categories, number,string,boolean,null,undefined and symbol.
+Numbers: whole numbers are integers, while decimal numbers are called floating-point
+Boolean: hold the value of true or false
+Strings: string of characters that are enclosed in '' or "".
+Strings can also be concatenated using the +.
+let z = x + " " + y;
+using the " " so the log isin't xy but rather x y.
+Objects: They are written in JSON, serires of comma-separated value pairs which can store in a variable
+let = {
+    title: "title",
+    author: "author",
+};
+Classes: They are templates for creating objects:
+class Book {
+    constructor(title: string, string2, number) {
+        this.string = string;
+        this.string2 = string2;
+        this.number = number;
+    }
+
+}
+let myBook = new Book("blabla", "yes", 242)
+--
+This is how you create an array, an array is a common type of collection, In JavaScript.
+let guests = ['Sarah Kate', 'Audrey Simon', 'Will Alexander'];
+
+let firstGuest = guests[0]; // 'Sarah Kate'
+let thirdGuest = guests[2]; // 'Will Alexander'
+let undefinedGuest = guests[12]; // undefined
+    &&  — Logical AND — for checking if two conditions are both true.
+
+    ||  — Logical OR — for checking if at least one condition is true.
+
+    !  — Logical NOT — for checking if a condition is not true.
+    switches 
+The switch statement evaluates an expression, matching the expression's value against a series of case clauses,
+ and executes statements after the first case clause with a matching value, 
+until a break statement is encountered. The default clause of a switch statement will be jumped to if no case matches the expression's value.
+A function is a block of code for  specific task.
+A function needs 3 things:
+
+
+A paramater, the argument, and the return value.
+
+A parameter is a variable in a method definition. When a method is called, the arguments are the data you pass into the method's parameters.
+An argument is the actual value of this variable that gets passed to function.
+A return value is the value that a function returns to the code that called it.
+   

@@ -1,0 +1,90 @@
+CSS ; Cascading Style Sheets
+
+p {
+   color:blue;
+   font-family: Arial;
+}
+
+#p: Paragraph tag in html ( <p> ).
+#color: blue : color is CSS property so we declare it here.
+#font-family: font is CSS property ( Here, Arial ).
+#{} open and close a set of style rules in CSS.
+
+Write in Html, Decorate in CSS. 
+ body {
+    color: blue;
+    padding: 20px;
+}
+#test{
+    font-family: Arial, serif}
+#hex {
+    font-family: "SF Pro Display", sans-serif;
+    color: #1BDA76;
+}
+
+#rgb {
+    color: rgb(27, 218, 118)
+}
+
+#color-name {
+    color: LightGreen;
+}
+
+#hsl {
+    color: hsl(149, 88%, 48%);
+}
+
+#access {
+    background-color: #1BDA76;
+    padding: 20px;
+    color: #D61BDA;
+    width: 50%;
+    text-align: center;
+}
+
+Pixels
+h1 {
+    font-size: 48px;
+}
+
+/* ems
+h1 {
+    font-size: 3em;
+}
+
+p {
+    font-size: 1.125em;
+}
+
+/* percentages
+h1 {
+    font-size: 300%;
+}
+
+p {
+    font-size: 112.5%;
+}
+/*Example
+ .curry {
+ color: red;
+ spice-level: extreme;
+ onions: none;
+}
+
+There are multiple ways to set color:
+Hex codes -
+#hex { color: #1BDA76; }
+
+Rgb values -
+rgb(27, 218, 118)
+
+Color names-
+Pretty straightforward
+
+Hsl Values - Stands for Hue, Saturation and Lightness
+Hue is the color in the color wheel, Saturation stands
+for the amount of grey in the color and lightness is
+the amount of black present in the color
+
+
+ Real Example of a CSS code

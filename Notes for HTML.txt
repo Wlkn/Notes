@@ -1,0 +1,82 @@
+Html, stands for HyperText Markup Language. It is the standard markup language for creating web pages and web applications. 
+With Cascading Style Sheets and JavaScript, it forms a triad of cornerstone technologies for the World Wide Web. 
+Web browsers receive HTML documents from a web server or from local storage and render the documents into multimedia web pages. 
+HTML describes the structure of a web page semantically and originally included cues for the appearance of the document.
+-----------------------------------------------
+Template for a website
+<!--TEMPLATE-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>TITLE</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+</body>
+</html>
+<!--TEMPLATE-->
+------------------------------------------------
+Tags 
+<div> division </div>
+<p> paragraph </p>
+<h1> heading </h1>
+<br /> line break
+<hr /> horizontal line
+<header> header </header>
+<footer> footer </footer>
+<nav> navigation </nav>
+<section> section </section>
+<article> article </article>
+<aside> aside </aside>
+<figure> figure </figure>
+<li> list item </li>
+<ul> unordered list </ul>
+<ol> ordered list </ol>
+<a href="http://www.google.com"> link </a>
+<img src="images/image.jpg" alt="image" />
+<strong> bold </strong>
+<em> italic </em>
+<script> script </script>
+------------------------------------------------
+Semantic elements 
+<details> details </details>
+<main> main </main>
+<mark> mark </mark>
+<summary> summary </summary>
+<time> time </time>
+<figcaption>adds a little text that follows the figure</figcaption> 
+<header>: the section at the top of a web page that often includes a logo and sometimes a nav
+<nav>: a set of menu items that allow a user to navigate to different pages on a site
+<section>: a general section of related content
+<article>: a piece of content that can be independently shared, like a blog post or newspaper article (even if you don't display the full article text, like you just show a preview, you can still use an article tag to delineate this content)
+<footer>: the section at the bottom of a page that often has additional links and perhaps social sharing icons
+<aside>: content that is complementary but not crucial to the page's main content (this could be an informative side section on a related subject)
+<figure>: a grouped image and caption that create an informative visual of some kind
+
+------------------------------------------------
+
+Block Level elements : They will take a whole line to themselves instead of stacking next to each other
+<address> // <figcaption> // <noscript>
+<article> // <figure> // <ol>
+<aside> // <footer> // <p>
+<blockquote> // <form> // <pre>
+<canvas> // <h1> thru <h6> // <section>
+<dd> // <header> // <table>
+<div> // <hr> // <ul>
+<dl> // <li> // <tfoot>
+<dt> // <main> // <video>
+<fieldset> // <nav> 
+
+------------------------------------------------
+
+Inline elements : They will stack on the same line
+<a> // <code> // <dfn> // <em>
+<abbr> // <i> // <img> // <input>
+<acronym> // <kbd> // <label> // <map>
+<b> // <object> // <output> // <q>
+<bdo> // <samp> // <script> // <select>
+<big> // <small> // <span> // <strong>
+<br> // <sub> // <textarea> // <sup>
+<button> // <time> // <tt> // <var>
+<cite> //
