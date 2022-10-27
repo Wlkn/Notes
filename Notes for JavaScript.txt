@@ -1,0 +1,162 @@
+Notes for JavaScript,
+Goals:
+How to structure and group information in your app with data types.
+
+How to use programming logic so your app does what you want it to.
+
+How to manage errors and make your app communicate.
+
+How to write readable code so you can more easily modify, maintain, and share your apps.
+----------------------------------------------------------------
+ VARIABLES:
+
+Try to use a descriptive name for your so instead of amount, or amt.use
+quantityInStock or currentBalance.
+To Declare a variable you do: "Let" 
+let numberofepisodes = 6;
+Now theses can be changed since it's not a constant
+We could do :
+let numbernumberofepisodes = 5;
+numberofepisodes = 10
+console.log(numbernumberofepisodes); it would say 10.
+BUT if we do, const numbernumberofepisodes = 10; we can't change it since it becomes read only.
+A type is the kind of data you store in it.
+It can be divided in 6 categories, number,string,boolean,null,undefined and symbol.
+Numbers: whole numbers are integers, while decimal numbers are called floating-point
+Boolean: hold the value of true or false
+Strings: string of characters that are enclosed in '' or "".
+Strings can also be concatenated using the +.
+let z = x + " " + y;
+using the " " so the log isin't xy but rather x y.
+Objects: They are written in JSON, serires of comma-separated value pairs which can store in a variable
+let = {
+    title: "title",
+    author: "author",
+};
+Classes: They are templates for creating objects:
+class Book {
+    constructor(title: string, string2, number) {
+        this.string = string;
+        this.string2 = string2;
+        this.number = number;
+    }
+
+}
+let myBook = new Book("blabla", "yes", 242)
+--
+This is how you create an array, an array is a common type of collection, In JavaScript.
+let guests = ['Sarah Kate', 'Audrey Simon', 'Will Alexander'];
+
+let firstGuest = guests[0]; // 'Sarah Kate'
+let thirdGuest = guests[2]; // 'Will Alexander'
+let undefinedGuest = guests[12]; // undefined
+    &&  — Logical AND — for checking if two conditions are both true.
+
+    ||  — Logical OR — for checking if at least one condition is true.
+
+    !  — Logical NOT — for checking if a condition is not true.
+    switches 
+The switch statement evaluates an expression, matching the expression's value against a series of case clauses,
+ and executes statements after the first case clause with a matching value, 
+until a break statement is encountered. The default clause of a switch statement will be jumped to if no case matches the expression's value.
+A function is a block of code for  specific task.
+A function needs 3 things:
+
+
+A paramater, the argument, and the return value.
+
+A parameter is a variable in a method definition. When a method is called, the arguments are the data you pass into the method's parameters.
+An argument is the actual value of this variable that gets passed to function.
+A return value is the value that a function returns to the code that called it.
+
+ 
+Inserting JAVASCRIPT into HTML.
+You can insert JavaScript into HTML by using the <script> tag.
+DOM is the Document Object Model, it's a programming interface for HTML and XML documents.
+It represents the page so you can change the document structure, style and content.
+
+document.getelementbytagname("p")[0].innerHTML = "Hello World"; 
+(This will change the first paragraph to Hello World.)
+
+document.getelementbyid("demo").innerHTML = "Hello World";
+(This will change the element with the id of demo to Hello World.)
+
+document.getelementbyclassname("intro")[0].innerHTML = "Hello World";(This will change the first element with the class of intro to Hello World.)  
+
+document.querySelector("p").innerHTML = "Hello World"; (only the first one)
+document.querySelectorAll("p").innerHTML = "Hello World"; (all of them)
+document..querySelectorAll("p.intro").innerHTML = "Hello World"; (all of them with the class of intro)
+document.querySelector("p#demo").innerHTML = "Hello World"; (the one with the id of demo)
+document.querySelector("p.intro").innerHTML = "Hello World"; (the first one with the class of intro)
+document.querySelector("p:first-child").innerHTML = "Hello World"; (the first one)
+document.querySelector("p:last-child").innerHTML = "Hello World"; (the last one)
+document.querySelector("p:nth-child(2)").innerHTML = "Hello World"; (the second one)
+
+element.children[0].innerHTML = "Hello World"; (this will change the first child of the element)
+
+element.parentElement.innerHTML = "Hello World"; (this will change the parent of the element)
+
+element.nextElementSibling + previousElementSibling.innerHTML = "Hello World"; (this will change the next sibling of the element)
+
+innerHTML is a property that represents the HTML content of an element.
+Event listeners:
+An event listener is a procedure or function in a computer program that waits for an event to occur.
+An event is something that happens to the element you are waiting for, like a click, a mouseover, a keypress, etc.
+The addEventListener() method attaches an event handler to the specified element.
+element.addEventListener(event, function, useCapture);
+The event parameter is the type of event (like "click" or "mousedown").
+The function parameter is the function to be executed when the event occurs.
+The useCapture parameter is a Boolean value that specifies whether the event should be executed in the capturing or in the bubbling phase.
+
+----------------------------------------------------------------
+Request data from a backend.
+A few things to know: 
+http is the protocol that is used to transfer data on the web. (get and post, put and delete)
+get is used to request data from a specified resource.
+post is used to send data to a server to create/update a resource.
+put is used to send data to a server to create/update a resource.
+delete is used to delete the specified resource.
+AJAX stands for Asynchronous JavaScript and XML. and it's a technique for creating fast and dynamic web pages.
+Api stands for Application Programming Interface, it's a software intermediary that allows two applications to talk to each other.
+JSON stands for JavaScript Object Notation, it's a lightweight data-interchange format.
+JSON is often used when data is sent from a server to a web page.
+JSON is "self-describing" and easy to understand.
+
+let apiRequest = new XMLHttpRequest(); // Create a request variable and assign a new XMLHttpRequest object to it.
+
+apiRequest.open('GET', 'https://api-to-call.com/endpoint', true); // Open a new connection, using the GET request on the URL endpoint
+
+apiRequest.send(); // Send request
+apiRequest.onload = function() {
+  // Begin accessing JSON data here
+  let data = JSON.parse(this.response);
+  // Do something with the data
+}
+
+Asynchronous JavaScript and XML (AJAX) is a set of web development techniques using many web technologies on the client side to create asynchronous web applications.
+With AJAX, web applications can send and retrieve data from a server asynchronously (in the background) without interfering with the display and behavior of the existing page.
+This means that it is possible to update parts of a web page, without reloading the whole page.
+AJAX is not a programming language.
+AJAX just uses a combination of:
+A browser built-in XMLHttpRequest object (to request data from a web server)
+JavaScript and HTML DOM (to display or use the data)
+For example, asynchronous programming is a way to write code that does not wait for a response before moving on to the next line of code. Like ordering pizza and then going to the movies while you wait for the pizza to arrive.
+--=--
+SEND HTTP REQUESTS
+DO SOMETHING ELSE
+--=--
+Callbacks are functions that are passed as arguments to other functions, to be “called back” at a later time.
+A callback function is a function passed into another function as an argument, which is then invoked inside the outer function to complete some kind of routine or action.
+A callback function can run after another function has finished.
+function doHomework(subject, callback) {
+  alert(`Starting my ${subject} homework.`);
+  callback();
+}
+------------------------------------------------
+Promises are used to handle asynchronous operations in JavaScript. They are easy to manage when dealing with multiple asynchronous operations where callbacks can create callback hell leading to unmanageable code.
+A Promise is an object representing the eventual completion or failure of an asynchronous operation.
+A Promise is in one of these states:
+pending: initial state, neither fulfilled nor rejected.
+fulfilled: meaning that the operation completed successfully.
+rejected: meaning that the operation failed.
+A Promise is a returned object to which you attach callbacks, instead of passing callbacks into a function.
