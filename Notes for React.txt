@@ -1,0 +1,70 @@
+//MAKE YOUR APP//
+
+To create an app with react, use the "npx create-react-app ${name}" command.
+npm start - starts the development server
+npm run build - for production build
+npm test - for testing
+ReactDOM.render - renders the app to the DOM but it is outdated and should be replaced with create root element and render it to the DOM.
+
+Then remove the boilerplate code and only keep the App.js,index.js.
+
+To return text with react, use the "return" keyword. To return multiple elements, wrap them in a div. 
+Using JSX, you can create a component and use it in the App.js file.
+
+
+// IMPORTING //
+You also need to import the component in the App.js file.
+The syntax for importing a component is "import {name} from './path'"
+You can also import multiple components in one line.
+The syntax for importing multiple components is "import {name1,name2} from './path'"
+You can also import all the components in one line.
+The syntax for importing all the components is "import * as name from './path'"
+
+// EXPORTING //
+You can export a component by using the "export default" keyword.
+The syntax for exporting a component is "export default name"
+You can also export multiple components in one line.
+The syntax for exporting multiple components is "export {name1,name2}"
+You can also export all the components in one line.
+The syntax for exporting all the components is "export * from './path'"
+
+// PROPS //
+Props are used to pass data from one component to another.
+The syntax for props is "name={value
+You can also pass a function as a prop.
+The syntax for passing a function as a prop is "name={functionName}"
+You can also pass an object as a prop.
+The syntax for passing an object as a prop is "name={objectName}"
+
+// STATE //
+State is used to store data in a component.
+The syntax for state is "const [name,setName]=useState(value)"
+You can also use state in a class component.
+The syntax for state in a class component is "this.state={name:value}"
+You can also update the state.
+The syntax for updating the state is "setName(value)"
+
+// KEY PROPS //
+Key props are used to give a unique identifier to a list item.
+The syntax for key props is "key={value of the key}"
+
+// HOOKS //
+Hooks are used to add state and other features to functional components.
+The syntax for hooks is "const [name,setName]=useState(value)"
+
+// USEEFFECT //
+UseEffect is used to perform side effects in functional components.
+The syntax for useEffect is "useEffect(()=>{code},[name])"
+You can also use useEffect in a class component.
+The syntax for useEffect in a class component is "componentDidMount(){code}"
+
+// JSX SYNTAX //
+JSX is a syntax extension to JavaScript.
+JSX is used to write HTML in React.
+JSX is not a requirement to write React.
+JSX makes React easier to read and write.
+The syntax for JSX is "<tag>content</tag>"
+You can also use self closing tags in JSX.
+The syntax for self closing tags in JSX is "<tag/>"
+You can also use JavaScript expressions in JSX.
+The syntax for JavaScript expressions in JSX is "{expression}"
