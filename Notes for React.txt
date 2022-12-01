@@ -1,6 +1,6 @@
 //MAKE YOUR APP//
 
-To create an app with react, use the "npx create-react-app ${name}" command.
+To create an app with react, use the "npx create-react-app ${name} command.
 npm start - starts the development server
 npm run build - for production build
 npm test - for testing
@@ -68,3 +68,38 @@ You can also use self closing tags in JSX.
 The syntax for self closing tags in JSX is "<tag/>"
 You can also use JavaScript expressions in JSX.
 The syntax for JavaScript expressions in JSX is "{expression}"
+
+
+// INTERMEDIATE REACT //
+PropTypes are used to check the type of props.
+The syntax for PropTypes is "name.propTypes={name:PropTypes.type}"
+You can also use PropTypes to check if a prop is required.
+The syntax for PropTypes to check if a prop is required is "name.propTypes={name:PropTypes.type.isRequired}"
+
+// REACT ROUTER //
+React Router is used to create single page applications.
+The syntax for React Router is "import {BrowserRouter as Router,Route,Switch} from 'react-router-dom'"
+You can also use React Router in a class component.
+The syntax for React Router in a class component is "import {Route, Routes, BrowserRouter as Router} from 'react-router-dom'"
+You can also use React Router in a functional component.
+<Router>
+    <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/about" element={<About/>}/>
+        <Route path="*" element={<Error/>}/>
+    </Routes>
+</Router>
+
+// STYLED COMPONENTS //
+Styled components are used to style React components.
+The syntax for styled components is "import styled from 'styled-components'"
+You can also use styled components in a class component.
+The syntax for styled components in a class component is "import styled from 'styled-components'"
+You can also use styled components in a functional component.
+
+// USING USEEFFECT TO FETCH DATA //
+UseEffect is used to fetch data from an API.
+The syntax for useEffect to fetch data from an API is "useEffect(()=>{fetch('url').then(res=>res.json()).then(data=>setName(data))},[])"
+You can also use useEffect to fetch data from an API in a class component.
+The syntax for useEffect to fetch data from an API in a class component is "componentDidMount(){fetch('url').then(res=>res.json()).then(data=>this.setState({name:data}))}"
+

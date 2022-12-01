@@ -160,3 +160,128 @@ pending: initial state, neither fulfilled nor rejected.
 fulfilled: meaning that the operation completed successfully.
 rejected: meaning that the operation failed.
 A Promise is a returned object to which you attach callbacks, instead of passing callbacks into a function.
+------------------------------------------------
+Regex is a sequence of characters that forms a search pattern.
+There are multiple ways to use Regex:
+Using the match() method: str.match(regexp)
+Using the search() method: str.search(regexp)
+Using the replace() method: str.replace(regexp)
+Using the split() method: str.split(regexp)
+Using the exec() method: regexp.exec(str)
+Using the test() method: regexp.test(str)
+To contain a regex in a string, you need to escape the special characters with a backslash.
+Example: let myString = "Hello, World!";
+let myRegex = /Hello/;
+let result = myRegex.test(myString);
+
+/./
+
+if (str.match(/regex/)) {
+  // Do something
+}
+To do multiple searches with the same regex, you can use the pipe character |.
+Example: let petString = "James has a pet cat.";
+let petRegex = /dog|cat|bird|fish/;
+
+To delimit a regex, you can use the caret ^ and dollar sign $. The caret matches the beginning of the string, and the dollar sign matches the end of the string.
+Example: let firstString = "Ricky is first and can be found.";
+let firstRegex = /^Ricky/;
+let result = firstRegex.test(firstString);
+
+let lastString = "You can't find Ricky now.";
+let lastRegex = /Ricky$/;
+let result = lastRegex.test(lastString);
+
+Using the [ ] character set, you can search for a single character from a list of characters.
+
+To search a range of characters, you can use the - character.
+
+To exclude a character, you can use the ^ character.
+
+You can also use the . character to match any character.
+
+The ? character is used to match zero or one of the preceding element. It is also used to make a group optional. 
+The * character is used to match zero or more of the preceding element.
+The + character is used to match one or more of the preceding element.
+The { } character is used to match a specific number of the preceding element.
+
+Generic types: 
+/d : finds a decimal digit
+/w : finds a word character
+/s : finds a whitespace character
+/D : finds a non-digit character
+/W : finds a non-word character
+/S : finds a non-whitespace character
+/./ : finds any character except for a newline
+
+Meta characters:
+^ : matches the beginning of input
+$ : matches the end of input
+\b : matches a word boundary
+\B : matches a non-word boundary
+\0 : matches a NULL character
+
+If you need to search meta characters, you can use the \ character to escape them. \{}\
+
+Build a regex:
+For example let's check for an email address.
+The email address should have a username, a @ symbol, a domain name, and a domain extension.
+The username can only contain letters, numbers, underscores, and periods.
+The domain [...]
+
+let email = "test@gmail.com";
+let emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+emailRegex.test(email) ? console.log("Valid email address!") : console.log("Invalid email address!");
+
+RegExp is a built-in object that provides functions for working with regular expressions.
+
+let re = "test";
+let myRegex = new RegExp("this is a " + re);
+
+RegExp only posseds two methods: test() and exec().
+The test() method searches a string for a match against a regular expression, and returns true or false.
+The exec() method executes a search for a match in a specified string. Returns a result array, or null.
+
+You can also use the RegExp.$1, RegExp.$2, ... RegExp.$9 properties to access the parenthesized substring matches.
+
+let re = /(\w+)\s(\w+)/;
+let str = "John Smith";
+let newstr = str.replace(re, "$2, $1");
+console.log(newstr);
+
+To make a non-greedy match, you can use the ? character after the + or * character.
+
+For example, let's say you want to match the string "hah" with the regex /ha{3,5}h/. Without the ? character, it would match the string "haaaah". With the ? character, it would match the string "hah".
+
+let html = '<a href="www.my-adress.be"><strong class="web">My Website</strong></a>';
+
+/<a href="(.+?)">/.exec(html);
+
+console.log(RegExp.$1);
+
+Search and replace :
+let sentence = "The quick brown fox jumps over the lazy dog.";
+
+let result = sentence.replace(/quick|brown|lazy/gi, function(match) {
+  return match.toUpperCase();
+});
+
+console.log(result);
+
+The g flag is used to find all matches instead of stopping after the first match.
+
+let sentence = "The quick brown fox jumps over the lazy dog. If the dog barked, was it really lazy?";
+let regex = /dog/g,"cat";
+let result = sentence.replace(regex);
+// this doesnt make any sense but oh well.
+
+Search and capture:
+
+let date = '05/27/2004';
+
+date = date.replace(/^(\d{2})\/(\d{2})\/(\d{4})$/, 'Le $2/$1/$3');
+
+alert(date); // the 27/05/2004
+
+
