@@ -1,0 +1,47 @@
+Node is a runtime that allwos you to run server side tasks with javascript.
+
+&
+
+Express is a framework that sits on top of Node.
+
+-Creating a server
+To create a Node server you need to create a file called server.js and then run it with node server.js
+Import the node package http
+Create a server with the createServer method
+Listen for requests on a port =>
+```
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+  res.end('Hello from the server side!');
+});
+
+server.listen(process.env.PORT || 3000);
+```
+Run node server to start the server
+
+installing nodemon to automatically restart the server when changes are made
+```npm install -g nodemon```
+```nodemon server.js```
+
+-Express
+Install the express package
+```npm install express```
+Import the express package
+Create an express app
+export the app
+```const express = require('express');
+    const app = express();
+module.exports = app;```
+```
+Change the server.js file to import the app
+```
+const app = require('./app');
+app.set('port', process.env.PORT || 3000);
+```
+normalizePort function returns a valid port.
+
+errorHandler function logs the error and returns a status code.
+
+onListening function logs the port the server is listening on.
+(server.on('listening' () => {}))

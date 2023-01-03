@@ -1,0 +1,41 @@
+Redux
+Redux is a predictable state container for JavaScript apps. It helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test. On top of that, it provides a great developer experience, such as live code editing combined with a time traveling debugger.
+
+The way to change the tree state is to dispatch an action. An action is a plain object describing what happened. Here’s an example action that adds a new todo item:
+
+Create action -> dispatch action -> reducer -> update state -> render
+
+Redux toolkit is a package that contains the most commonly used Redux packages. It is designed to help you write Redux logic more quickly and correctly.
+
+The global state is stored in a single object. The state is read-only. The only way to change the state is to emit an action, an object describing what happened and dispatch it to the store.
+
+subscribe() method is used to register a callback that Redux store will call any time an action has been dispatched so that you can update the UI of your application to reflect the current application state. ( normally you ould use a library like React Redux for this )
+
+The installation: npm install @reduxjs/toolkit - this includes the core.
+
+Also for react: npm install react-redux
+npm install --save-dev @types/react-redux
+
+The easiest way to start your app is : 
+npx create-react-app my-app --template redux
+for ts: npx create-react-app my-app --template redux-typescript
+
+RTK includes store configuration, reducer creation, writing immutable update logic and creating entire slices of state.
+
+redux toolkit starts with two key APIs:
+configureStore() and createSlice()
+
+The configureStore() function accepts a single argument, an object with the following fields: reducer, middleware, devTools, preloadedState, enhancers.
+
+createSlice() accepts an object with the following fields: name, initialState, reducers, extraReducers, and provides a reducer and action creators for the slice.
+
+Redux toolkit also includes other APIs that are useful for building Redux apps, such as 
+createAsyncThunk { abstracts away the boilerplate of writing async logic in Redux }
+
+, createEntityAdapter { helps you manage normalized data in Redux }
+
+, and createSelector { memoizes the results of a selector function }
+
+, and createEntityAdapter { a side effects middleware for running logic in response to dispatched actions }.
+
+RTK query is a data fetching and caching tool for Redux apps. It is designed to simplify common use cases such as fetching data from a server, caching the data in the store, and updating the store based on mutations to the data.

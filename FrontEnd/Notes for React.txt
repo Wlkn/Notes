@@ -103,3 +103,18 @@ The syntax for useEffect to fetch data from an API is "useEffect(()=>{fetch('url
 You can also use useEffect to fetch data from an API in a class component.
 The syntax for useEffect to fetch data from an API in a class component is "componentDidMount(){fetch('url').then(res=>res.json()).then(data=>this.setState({name:data}))}"
 
+Context is used to share data between components.
+The syntax for Context is "const {name,setName}=useContext(ContextName)"
+You can also use Context in a class component.
+The syntax for Context in a class component is "this.context={name:value}"
+The data you should share with Context is data that is required by multiple components.
+Like the user object, theme object, or authentication object.
+The elements needed to create a Context are the Context object, the Provider, and the Consumer.
+
+
+// CREATE YOUR OWN HOOK //
+You can create your own hook.
+The syntax for creating your own hook is 
+export function blabla(){\
+}
+

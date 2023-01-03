@@ -1,0 +1,245 @@
+A Database is a server where you store, retrieve and manipulate data. 
+SQL is a language used to communicate with a database.
+Relational databse is a database that stores data in tables.
+A table is a collection of data organized in rows and columns.
+There are 3 types of relationships between tables: one-to-one, one-to-many and many-to-many.
+For example, a customer can have many orders, but an order can only have one customer.
+
+SQL stands for Structured Query Language. It is a language used to communicate with a database. It is used to create, modify, and extract data from a database. It is a standard language for relational database management systems.
+
+Table : id, name, age, address, phone, email, etc.
+row: 1, John, 25, 123 Main St, 123-456-7890,
+row: 2, Jane, 30, 456 Main St, 123-456-7890,
+columns: 1, 2, 3, 4, 5, 6..., John is in column 2, Jane is in column 2, etc.
+
+You could have a table of persons and a table of addresses. The person table would have a column for the address id. The address table would have a column for the person id. The person table would have a one-to-many relationship with the address table. The address table would have a one-to-many relationship with the person table.
+
+Creating a table:
+CREATE TABLE table_name (
+    column1 datatype, constraints if any,
+    column2 datatype, constraints if any,
+    column3 datatype, constraints if any,
+    ....
+);
+
+Datatypes:
+https://www.postgresql.org/docs/current/datatype.html
+
+/d to check tables in database
+/d table_name to check columns in table
+
+To insert data into a table:
+INSERT INTO table_name (column1, column2, column3, ...) VALUES (value1, value2, value3, ...);
+
+Cool ID trick to auto increment:
+CREATE TABLE table_name (
+    id BIGSERIAL PRIMARY KEY,
+    column1 datatype, constraints if any,
+    column2 datatype, constraints if any,
+    column3 datatype, constraints if any,
+    ....
+);
+BIGSERIAL is a datatype that auto increments.
+
+To retrieve data from a table:
+SELECT column1, column2, column3, ... FROM table_name;
+or if you want all columns:
+SELECT * FROM table_name;
+or to select specific rows:
+SELECT * FROM table_name WHERE column1 = value1;
+
+To sort data:
+SELECT * FROM table_name ORDER BY column1 ASC/DESC;
+by default it is ASC.
+
+If you want unique values:
+SELECT DISTINCT column1 FROM table_name;
+
+Where clause:
+SELECT * FROM table_name WHERE column1 = value1 AND/OR column2 = value2;
+
+Compare operators:
+=, <>, <, >, <=, >=
+ex: SELECT * FROM table_name WHERE column1 > value1;
+or 
+SELECT 'hello' = 'hello'; -- returns true
+
+Limit results:
+SELECT * FROM table_name LIMIT 5; -- returns first 5 rows
+
+Offset results:
+SELECT * FROM table_name OFFSET 5; -- returns rows starting at 6th row
+
+Fetch results:
+SELECT * FROM table_name FETCH FIRST 5 ROWS ONLY; -- returns first 5 rows
+
+In clause:
+SELECT * FROM table_name WHERE column1 IN (value1, value2, value3, ...);
+
+Between clause:
+SELECT * FROM table_name WHERE column1 BETWEEN value1 AND value2;
+
+Like clause:
+SELECT * FROM table_name WHERE column1 LIKE 'value%'; -- returns all rows where column1 starts with value
+SELECT * FROM table_name WHERE column1 LIKE '%value'; -- returns all rows where column1 ends with value
+SELECT * FROM table_name WHERE column1 LIKE '%value%'; -- returns all rows where column1 contains value
+
+Ilike clause:
+SELECT * FROM table_name WHERE column1 ILIKE 'value%'; -- returns all rows where column1 starts with value (case insensitive)
+SELECT * FROM table_name WHERE column1 ILIKE '%value'; -- returns all rows where column1 ends with value (case insensitive)
+SELECT * FROM table_name WHERE column1 ILIKE '%value%'; -- returns all rows where column1 contains value (case insensitive)
+
+Group by clause:
+SELECT column1, COUNT(*) FROM table_name GROUP BY column1;
+SELECT column1, COUNT(*) FROM table_name GROUP BY column1 HAVING COUNT(*) > 1;
+
+Having clause:
+SELECT column1, COUNT(*) FROM table_name GROUP BY column1 HAVING COUNT(*) > 1;
+
+Min, max, avg, sum, round functions:
+SELECT MIN( column1 ) FROM table_name;
+SELECT MAX( column1 ) FROM table_name;
+SELECT AVG( column1 ) FROM table_name;
+SELECT SUM( column1 ) FROM table_name;
+SELECT ROUND( column1 ) FROM table_name;
+
+This is used to find the minimum value of column3 in a table, grouped by the values of column1 and column2.
+
+SELECT column1, column2, MIN( column3 ) FROM table_name GROUP BY column1, column2;
+
+Basic arithmetic operators:
++, -, *, /, %
+SELECT 1 + 1; -- returns 2
+SELECT 1 - 1; -- returns 0
+SELECT 1 * 1; -- returns 1
+SELECT 1 / 1; -- returns 1
+SELECT 1 % 1; -- returns 0
+
+Arithmetics on tables:
+SELECT column1, column2, column3, (column1 * 2) FROM table_name;
+
+Aliases for columns:
+Aliases for tables:
+SELECT column1, column2, column3, (column1 * 2) AS column4 FROM table_name;
+SELECT t1.column1, t1.column2, t2.column3 FROM table1 t1, table2 t2;
+
+Coalesce function:
+SELECT COALESCE (column1, 'default value') FROM table_name;
+
+Handle division by zero with nullIF:
+SELCT COALESCE( 10 / NULLIF( column1, 0 ), 0 ) FROM table_name;
+
+Dates:
+SELECT NOW(); -- returns current date and time
+SELECT CURRENT_DATE; -- returns current date
+SELECT CURRENT_TIME; -- returns current time
+SELECT EXTRACT( YEAR FROM NOW() ); -- returns current year
+SELECT EXTRACT( MONTH FROM NOW() ); -- returns current month
+SELECT EXTRACT( DAY FROM NOW() ); -- returns current day
+SELECT EXTRACT( HOUR FROM NOW() ); -- returns current hour
+SELECT EXTRACT( MINUTE FROM NOW() ); -- returns current minute
+SELECT EXTRACT( SECOND FROM NOW() ); -- returns current second
+
+Date arithmetic:
+SELECT NOW() + INTERVAL '1 day'; -- returns tomorrow's date
+SELECT NOW() - INTERVAL '1 day'; -- returns yesterday's date
+SELECT NOW() + INTERVAL '1 month'; -- returns next month's date
+... etc.
+
+Date comparison:
+SELECT NOW() > NOW() - INTERVAL '1 day'; -- returns true
+SELECT NOW() < NOW() - INTERVAL '1 day'; -- returns false
+... etc.
+
+Extract age from date:
+SELECT AGE(NOW(), date_of_birth ) AS age FROM table_name;
+
+Add a primary key:
+ALTER TABLE table_name ADD PRIMARY KEY (column1);
+
+Add a constaint to a column:
+ALTER TABLE table_name ADD CONSTRANT constraint_name UNIQUE (column1);
+or without a name:
+ALTER TABLE table_name ADD UNIQUE (column1);
+
+Delete a row:
+DELETE FROM table_name WHERE column1 = value1;
+
+Delete everything from a table:
+DELETE FROM table_name;
+
+Delete a table:
+DROP TABLE table_name;
+
+Delete a database:
+DROP DATABASE database_name;
+
+Rename a table:
+ALTER TABLE table_name RENAME TO new_table_name;
+
+Rename a column:
+ALTER TABLE table_name RENAME COLUMN column1 TO new_column_name;
+
+Add a column:
+ALTER TABLE table_name ADD COLUMN column1 datatype;
+
+Delete a column:
+ALTER TABLE table_name DROP COLUMN column1;
+
+Update a row:
+UPDATE table_name SET column1 = value1 WHERE column2 = value2;
+
+Update a column:
+UPDATE table_name SET column1 = value1;
+
+Insert with no conflict:
+INSERT INTO table_name (column1, column2, column3) VALUES (value1, value2, value3) ON CONFLICT DO NOTHING;
+
+Insert with conflict:
+INSERT INTO table_name (column1, column2, column3) VALUES (value1, value2, value3) ON CONFLICT (column1) DO UPDATE SET column2 = value2, column3 = value3;
+
+Insert with conflict with exclusion:
+INSERT INTO table_name (column1, column2, column3) VALUES (value1, value2, value3) ON CONFLICT (column1) DO UPDATE SET column2 = EXCLUDED.column2, column3 = EXCLUDED.column3;
+
+Check constraints:
+ALTER TABLE table_name ADD CONSTRAINT constraint_name CHECK (column1 > 0) or (column1 < 0) or (column1 = 0); 
+
+Foreign keys and relationships:
+Adding a foreign key:
+ALTER TABLE table_name ADD CONSTRAINT constraint_name FOREIGN KEY (column1) REFERENCES other_table (column2);
+or when creating the table add:
+column1 datatype REFERENCES other_table (column2);
+
+Adding a relationship:
+ALTER TABLE table_name ADD CONSTRAINT constraint_name FOREIGN KEY (column1) REFERENCES other_table (column2) ON DELETE CASCADE;
+
+Inner joins:
+SELECT * FROM table1 
+INNER JOIN table2 ON table1.column1 = table2.column2;
+
+Left joins:
+SELECT * FROM table1
+LEFT JOIN table2 ON table1.column1 = table2.column2;
+
+Typing \x in psql will display the results in a more readable format.
+
+Deleting records that has a foreign key:
+DELETE FROM table1 WHERE column1 = value1; would fail because of the foreign key constraint.
+So you can either delete the record from the other table first or make the value null:
+Make it null: UPDATE table1 SET column1 = NULL WHERE column1 = value1;
+&
+Delete the record from the other table: DELETE FROM table2 WHERE column1 = value1;
+
+Generate a CSV file from a table with post res:
+COPY table_name TO '/path/to/file.csv' DELIMITER ',' CSV HEADER;
+
+Restart the value of a sequence:
+ALTER SEQUENCE sequence_name RESTART WITH 1;
+
+
+
+
+
+
+
+
