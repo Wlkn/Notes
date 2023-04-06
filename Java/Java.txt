@@ -1,0 +1,386 @@
+Java notes
+
+
+Declare variables :
+
+int a = 10; ---=--- integer
+double b = 10.5; ---=--- double
+char c = 'a'; ---=--- character
+String s = "Hello"; ---=--- string
+int[] arr = new int[5]; ---=--- array
+final int a = 10; ---=--- constant
+
+Manipulate arrays :
+ ( ArrayList, Set, Map, Multi-Dimensional Arrays )
+add : arr.add(10);
+remove : arr.remove(0);
+set : arr.set(0, 10);
+get : arr.get(0);
+size : arr.size();
+clear : arr.clear();
+ 
+ to manipulate simple arrays : 
+    arr[0] = 10;
+    arr[1] = 20;
+    arr[2] = 30;
+
+    and you change the value of array :
+        arr[0] = 100;
+    you cannot change the size of array nor remove any element from array.
+
+
+
+To print :
+
+System.out.println("Hello World");
+    To print in same line :
+        System.out.print("Hello World");
+
+
+To declare a class :
+
+class Car {
+    // code
+}
+    And to create an object of class Car :
+        Car obj = new A();
+            obj means the object of class Car
+
+    And to access the variable of class Car :
+        Car.var;
+
+
+Different type of arrays :
+
+Fixed size array :
+    int[] arr = new int[5];
+    arr[0] = 10;
+    arr[1] = 20;
+
+    To print :
+        System.out.println(arr[0]);
+        System.out.println(arr[1]);
+
+Dynamic sized arrays :
+
+     **ArrayList** An array list is a resizable array, also called a dynamic array, which can grow or shrink as needed. An ArrayList is like an array, but there is no need to specify its size explicitly. It is found in the java.util package.
+        || || ||
+        || || ||
+        || || || 
+    ArrayList<Integer> arr = new ArrayList<Integer>();
+    arr.add(10);
+    arr.add(20);
+
+    To print :
+        System.out.println(arr.get(0));
+        System.out.println(arr.get(1));
+
+        ---==---
+        ---==---
+
+        **Sets** A set is a collection that cannot contain duplicate elements. It is found in the java.util package.
+        || || ||
+        || || ||
+        || || || 
+    Set<Integer> arr = new HashSet<Integer>();
+    arr.add(10);
+    arr.add(20);
+
+    To print :
+        System.out.println(arr.get(0));
+        System.out.println(arr.get(1));
+
+        ---==---        
+        ---==---
+
+
+        **Maps** A map is an object that maps keys to values. A map cannot contain duplicate keys; each key can map to at most one value. It is found in the java.util package.
+        || || ||
+        || || ||
+        || || || 
+    Map<Integer, String> arr = new HashMap<Integer, String>();
+    arr.put(1, "Hello");
+    arr.put(2, "World");
+
+    To print :
+        System.out.println(arr.get(1));
+        System.out.println(arr.get(2));
+
+        ---==---
+        ---==---
+
+        **Multi-Dimensional Arrays** A multi-dimensional array is an array of arrays. It is found in the java.util package.
+        || || ||
+        || || ||
+        || || || 
+    int[][] arr = new int[2][2];
+    arr[0][0] = 10;
+    arr[0][1] = 20;
+    arr[1][0] = 30;
+    arr[1][1] = 40;
+
+    To print :
+        System.out.println(arr[0][0]);
+        System.out.println(arr[0][1]);
+        System.out.println(arr[1][0]);
+        System.out.println(arr[1][1]);
+
+
+Control levels :
+
+    Public : Accessible to all classes
+    Private : Accessible only within the declared class
+    Protected : Accessible within the package and all subclasses
+    Package-Protected : Accessible within the package
+
+
+if-else :
+
+if (condition) {
+    // code
+} else {
+    // code
+} there can also be else if (condition) { // code } before else
+
+switch-case :
+
+switch (variable) {
+    case 1:
+        // code
+        break;
+    case 2:
+        // code
+        break;
+    default:
+        // code
+        break;
+}
+
+Loops :
+
+for (int i = 0; i < 10; i++) {
+    // code
+}
+
+while (condition) {
+    // code
+}
+
+do {
+    // code
+} while (condition);
+
+To skip an interation you can use continue and to break the loop you can use break.
+
+Try catch :
+
+try {
+    // code
+} catch (Exception e) {
+    // code
+}
+
+To throw an exception :
+
+throw new Exception("Error");
+
+Get input from user :
+
+Scanner sc = new Scanner(System.in);
+    int a = sc.nextInt();
+    double b = sc.nextDouble();
+    String s = sc.nextLine();
+
+    To get input from user in a single line :
+        String[] arr = sc.nextLine().split(" ");
+
+    To get input from user in a single line and store it in an array :
+        String[] arr = sc.nextLine().split(" ");
+        int a = Integer.parseInt(arr[0]);
+        int b = Integer.parseInt(arr[1]);
+
+    To get input from user in a single line and store it in an array and convert it to integer :
+        String[] arr = sc.nextLine().split(" ");
+        int a = Integer.parseInt(arr[0]);
+        int b = Integer.parseInt(arr[1]);
+
+    To get input from user in a single line and store it in an array and convert it to integer and store it in an array :
+        String[] arr = sc.nextLine().split(" ");
+        int[] arr2 = new int[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            arr2[i] = Integer.parseInt(arr[i]);
+        }
+
+    To get input from user in a single line and store it in an array and convert it to integer and store it in an array and print it :
+        String[] arr = sc.nextLine().split(" ");
+        int[] arr2 = new int[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            arr2[i] = Integer.parseInt(arr[i]);
+        }
+        for (int i = 0; i < arr2.length; i++) {
+            System.out.println(arr2[i]);
+        }
+
+Declare a function :
+
+public static void function() {
+    // code
+}
+
+Declare a function with return type :
+
+public static int function() {
+    // code
+    return 0;
+}
+
+Declare a function with parameters :
+
+public static void function(int a, int b) {
+    // code
+}
+
+Declare a function with return type and parameters :
+
+public static int function(int a, int b) {
+    // code
+    return 0;
+}
+
+Declare a function with return type and parameters and call it :
+
+public static int function(int a, int b) {
+    // code
+    return 0;
+}
+    function(10, 20);
+
+-- WRITING CLEAN CODE --
+
+
+SOLID Principles :
+
+"S" stands for Single responsibility principle. A class should only do one thing and should only have one reason to change.
+
+"O" stands for Open-closed principle. A class should be open for extension but closed for modification.
+
+"L" stands for Liskov substitution principle. A subclass should be substitutable for its superclass.
+
+"I" stands for Interface segregation principle. A client should not be forced to depend on methods it does not use.
+
+"D" stands for Dependency inversion principle. High-level modules should not depend on low-level modules. Both should depend on abstractions.
+
+Cleaner designs are easier to understand, maintain, modify, and extend. They are also easier to test and debug.
+
+SOLID principles leads to cleaner design.
+
+MVS Architecture :
+
+The Model View Controller (MVC) is a software design pattern that separates an application into three main logical components: the model, the view, and the controller.
+
+Model: Holds the data of the application. It is independent of the user interface.
+
+View: Displays the data to the user. It is independent of the model.
+
+Controller: Processes the user input and updates the model and the view.
+
+
+Avoid STUPID code :
+
+S - Single Responsibility Principle ( Singleton ) : A class should have only one reason to change.
+
+T - Tight Coupling : A class should not depend on another class.
+
+U - Untestable Code : A class should be testable.
+
+P - Premature Optimization : A class should not be optimized prematurely.
+
+I - Indescriptive Names : A class should have descriptive names.
+
+D - Duplication : A class should not have duplicate code.
+
+
+What is a design pattern ?
+
+A design pattern is a general repeatable solution to a commonly occurring problem in software design. It is not a finished design that can be transformed directly into code. It is a description or template for how to solve a problem that can be used in many different situations.
+
+Patterns have 4 main elements :
+
+1. Pattern name : A short, memorable name that describes the problem, the solution, and the consequences of the solution.
+
+2. Problem : A description of when to apply the pattern.
+
+3. Solution : A description of the elements that make up the design, their relationships, responsibilities, and collaborations.
+
+4. Consequences : A discussion of the trade-offs and results of using the pattern.
+
+Why use a design pattern? 
+
+1. Design patterns are proven solutions to common problems.
+
+2. Design patterns are a common language that allows developers to communicate with each other.
+
+3. Design patterns are a catalog of reusable designs.
+
+4. Design patterns are a framework for learning.
+
+5. Design patterns are a way to improve code quality.
+
+6. Design patterns are a way to improve code readability.
+
+7. Design patterns are a way to improve code maintenance.
+
+8. Design patterns are a way to improve code extensibility.
+
+And many more...
+
+Three types of design patterns :
+
+1. Creational Patterns : These design patterns provide a way to create objects while hiding the creation logic, rather than instantiating objects directly using new operator. This gives program more flexibility in deciding which objects need to be created for a given use case.
+
+2. Structural Patterns : These design patterns concern class and object composition. Concept of inheritance is used to compose interfaces and define ways to compose objects to obtain new functionalities.
+
+3. Behavioral Patterns : These design patterns are specifically concerned with communication between objects.
+
+Why use Creational Patterns ?
+
+1. To avoid tight coupling between objects.
+
+2. To avoid creating objects that are not needed.
+
+3. To avoid creating objects that are not needed.
+
+The factory pattern has an object create another object. You can configure the factory to make an object just the way you want it.
+
+The prototype pattern creates a new object by cloning an existing object.
+
+The builder pattern creates a complex object by assembling various other objects into the single, complex item.
+
+
+Why use Structural Patterns ?
+
+Structural patterns are ways of organizing classes or objects so that they are easy to use. There might be a lot happening behind the scenes, but as a user, you don’t need to know the complexities. There are two types of structural patterns — those that organize classes and those that organize objects. We’ll look at both kinds.
+
+The adapter pattern allows two incompatible interfaces to work together.
+
+The decorator pattern allows you to add new functionality to an existing object without altering its structure.
+
+The composite pattern allows you to compose objects into tree structures to represent part-whole hierarchies.
+
+
+Why use Behavioral Patterns ?
+
+Behavioral patterns are concerned with the way objects communicate with each other. They are concerned with the assignment of responsibilities between objects. They are concerned with the way objects interact with each other.
+
+The observer pattern allows an object to publish changes to its state. Other objects subscribe to be immediately notified of any changes.
+
+The strategy pattern allows you to define a family of algorithms, put each of them into a separate class, and make their objects interchangeable.
+
+The state pattern allows an object to alter its behavior when its internal state changes. The object will appear to change its class.
+
+
+
+
+
+
+
