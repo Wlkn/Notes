@@ -1,0 +1,435 @@
+--==-- Docker & Kubernetes --==--
+
+On simple terms, Docker allows you to run applications in a container. A container is a lightweight, stand-alone, executable package of a piece of software that includes everything needed to run it: code, runtime, system tools, system libraries, settings.
+
+After understanding images and containers we need a way to run it somewhere where thoses containers can be orchastrated. This is where Kubernetes comes in. Kubernetes is a container orchastration tool that allows you to run containers in a cluster. It is a tool that allows you to deploy, scale, and manage containerized applications.
+
+Kubernetes is one of the best tools for container orchastration. It is open source and has a large community behind it. It is also backed by Google, which is one of the biggest companies in the world. Kubernetes is also cloud agnostic, which means that you can run it on any cloud provider or on-premise.
+
+
+--==-- Docker --==--
+
+What is Docker?
+-Docker is a tool for running applications in an isolated environment
+-Similar to a virtual machine
+-App run in the same environment so if it runs in one machine it will run in another
+-Standard for software deployment, whatever you package will run in any machine
+
+What is a container?
+Containers are an abstraction at the app layer that paackages code and dependencies together. Multipe containers can run on the same machine and share the OS kernel with other containers, each running as isolated processes in user space. Containers take up less space than VMs (container images are typically tens of MBs in size), can handle more applications and require fewer VMs and Operating systems.
+
+Compared to VMs, containers:
+Virtual machines are an abstraction of physical hardware turning one server into many servers. The hypervisor allows multiple VMs to run on a single machine. Each VM includes a full copy of an operating system, the application, necessary binaries and libraries - taking up tens of GBs. VMs can also be slow to boot.
+
+A virtual machines requires a full copy of an operating system. Each VM needs to boot the entire OS. VMs can also be slow to boot. Docker containers are much more lightweight. They share the OS kernel, start much faster and use a fraction of the memory compared to booting an entire OS.
+
+Benefits: Run container in seconds instead of minutes, less resources, uses less memory and don't need a full OS. Also the deployment and testing is much easier.
+
+..--.. Installing Docker ..--..
+
+https://docs.docker.com/desktop/install/windows-install/
+
+Type docker to see if it is installed
+
+..--.. Docker Images ..--..
+
+-An image is a template for creating an environment of your choice
+-Snapshot
+-Has everything you need to run your applications
+-Stores all the dependencies, libraries, and code and OS needed to run the application
+
+..--.. Docker Containers ..--..
+
+-Instance of an image
+-You can run multiple containers from the same image
+
+..--.. Docker Hub ..--..
+
+https://hub.docker.com/
+-Repository of images
+-You can pull images from here
+-You can also push images to here
+
+
+
+>> Practice <<
+Pull nginx container image from Docker Hub
+docker pull nginx
+
+To check images
+docker images
+
+Run nginx container
+docker run nginx:latest
+
+You need to specify the tag of the image you want to run. If you don't specify the tag it will run the latest version of the image.
+
+Run in detached mode
+docker run -d nginx:latest
+
+To check running containers
+docker ps
+
+..--.. Exposing Ports ..--..
+
+The nginx container is running but we can't access it. We need to expose the port of the container to the host machine.
+
+We want to issue a request to the nginx container and get a response back. It should be mapped to port 80 on the host machine.
+
+-p 80:80 means that we are mapping port 80 on the host machine to port 80 on the container.
+
+docker run -d -p 8080:80 nginx:latest
+
+..--.. Docker commands ..--..
+
+To stop a container
+docker stop <container id>
+
+
+
+To remove a container
+docker rm <container id>
+
+To remove an image
+docker rmi <image id>
+
+To see all containers (running and stopped)
+docker ps -a
+
+To remove all containers 
+docker rm $(docker ps -aq)
+
+To remove one image
+docker rmi <image id>
+
+To remove all images
+docker rmi $(docker images -q)
+
+Rename a container
+docker rename <container id> <new name>
+or if it's before running it
+docker run --name <new name> -d -p 8080:80 nginx:latest
+
+Change the format
+docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Image}}"
+docker narrow format: docker ps --format="ID\t{{.ID}}\nNAME\t{{.Names}}\nIMAGE+t{{.Image}}\nPORTS\t{{.Ports}}\nCOMMAND\t{{.Command}}\nCREATED\t{{.CreatedAt}}\t{{.Status}}\n"
+
+..--.. Docker Volumes ..--..
+
+-Allows to share data, files or folders between the host machine and the container
+-Also between containers
+-It is a directory that is outside the default Union File System and lives within the host file system
+-If we add a file to the volume it will be added to the host machine and viceversa
+
+to send a file to the container
+docker run -d -p 8080:80 -v $(pwd):/usr/share/nginx/html nginx:latest
+
+to navigate to the file in the container
+docker exec -it <container id> bash
+cd /usr/share/nginx/html
+ls
+touch test.txt (this will create a file in the host machine)
+
+..--.. Dockerfile ..--..
+
+-Build your own images
+-Text file that contains all the commands to assemble an image
+-Series of steps to create an image
+
+Create a file called Dockerfile and add the following :
+
+FROM nginx:latest //this is the base image
+ADD . /usr/share/nginx/html //this will add the files from the current directory to the container
+
+To build the image
+docker build -t website .
+-t is the tag name
+. is the current directory
+then you can run the image
+docker run -d -p 8080:80 website
+
+
+..--.. Alpine - Node..--..
+
+Alpine is a lightweight linux distribution. It is very small and has a very small footprint. It is very popular in the docker community because of its size.
+
+FROM node:alpine
+
+..--.. Tags, versioning, Tagging Images ..--..
+
+-Allows you to control image version
+-Avoids breaking changes
+-Safe
+
+Tags and Version example:
+You ran yesterday docker pull node:latest (it's v8)
+But today you run docker pull node:latest (it's v10)
+This will break your application
+
+To avoid this you can specify the version of the image you want to run
+
+docker pull node:8
+docker pull node:10
+
+Change the tag of an image
+
+docker tag api:latest api:1.0.0
+
+To run the new image
+
+docker run --name api-1.0.0 -d -p 8080:80 api:1.0.0
+run an older version : 
+docker run --name api:0.0.1 -d -p 8081:80 api:0.0.1
+
+..--.. Docker Registries ..--..
+
+-Highly scalable server side application that stores and lets you distribute docker images
+--Used in CD/CI Pipeline
+-Run your application in any environment
+
+A computer server that holds all of the images
+
+You can use a command called push to push your image to a registry
+
+docker push <image name>(latest)
+docker push <image name>:<tag>(optional)
+
+There is public and private registries like github
+
+Famous registries:
+Docker Hub
+quay.io
+AWS ECR
+
+To pull an image from a registry
+
+docker pull <image name> (if you want the latest version)
+docker pull <image name>:<tag> (if you want a specific version)
+
+..--.. Docker Inspect ..--..
+
+To inspect a container
+docker inspect <container id> 
+This will give a lot of info, in a JSON format, about the container
+
+To inspect a container and get a specific info
+docker inspect --format '{{.NetworkSettings.IPAddress}}' <container id>
+
+To inspect an image
+docker inspect <image id>
+
+..--.. Docker Logs ..--..
+
+To see the logs of a container
+docker logs <container id>
+
+To see the logs of a container in real time
+docker logs -f <container id>
+
+To see the logs of a container in real time and with a specific format
+
+docker logs -f --tail 10 --since 2020-01-01T12:00:00 <container id>
+
+export the logs to a file
+
+docker logs <container id> > logs.txt
+ 
+..--.. Docker Exec ..--..
+
+To run a command in a container:
+docker exec <container id> <command>
+
+To run a command in a container in interactive mode:
+docker exec -it <container id> <command>
+
+
+So the order: docker ps > docker exec -it <container id> /bin/sh > ls
+
+---=====---...---...---====--- Kubernetes ---====---...---...---=====---
+
+-What is kubernetes: Open source container ochestration tools
+-Developed by Google
+-Helps you manage containerized applications in different deployment environments
+
+The need for a container orchestration tool:
+
+> Trend from Monolith to microservices
+> Incresed usage of containers
+> Demand for a proper way of managing hundreds of containers
+
+What features do we need in a container orchestration tool?
+
+> High availability
+> Scalability
+> Disaster recovery
+> Load balancing
+
+
+..--.. Kubernetes Architecture ..--..
+
+One master node connected to multiple worker nodes
+
+The worker nodes have a node agent on it and docker deployed on it
+
+The master node has the API server, scheduler, controller manager and etcd
+
+THe API server is the only component that interacts with the etcd
+
+The scheduler is responsible for scheduling the containers on the worker nodes
+
+The controller manager is responsible for the replication controller
+
+The etcd is a key value store that stores all the data
+
+And the worker nodes have the kubelet, kube-proxy and docker
+
+The workers are usually bigger since they have the containers running on them but the master is way more important
+
+There is possibly more than one master node incase one fails
+
+..--.. Kubernetes Components ..--..
+
+You only interact with the Kubernetes layer through the API server
+
+Node & Pod 
+
+> A pod is the smallest unit of K8s
+> Abstraction over container
+> A pod can have one or more containers
+> Usually 1 container per pod
+> Containers in a pod share the same IP address and port space
+> Pods are ephemeral (short lived) a new one will get created in its place if it fails
+
+A Service is a logical set of pods and a policy by which to access them they have a permanent IP address and DNS name
+>Lifecycle of a service is independent of the pods
+
+External Service is a service that is exposed to the outside world
+The url of the service is the url of the external service
+
+There is also the internal service which is only accessible within the cluster
+
+Ingress is a collection of rules that allow inbound connections to reach the cluster services
+
+> Ingress can provide load balancing, SSL termination and name-based virtual hosting
+
+It is the first point of contact for external traffic
+
+ConfigMap is a key value pair that stores non-confidential data in plain text. It will store things like DB_URL so you just have to change it in one place
+
+Secret is a key value pair that stores confidential data like passwords and tokens
+
+..--.. Kubernetes Volumes ..--..
+
+--Data storage
+
+If a pod restarts you'll lose the data so you use Volumes
+
+Volumes are a directory accessible to all containers in a pod
+
+Storage on a local machine or cloud storage
+
+K8s cluster and the storage is different, storage is like an external hard drive plugged In the kubernetes cluster
+
+..-.. Deployment stateful set ..-..
+
+If the application dies or I need to restart, the api is unaccessible.
+
+This is why you would have another node connected to the same service from the first node. So if the first node dies, the second node will take over.
+
+> Even if it doesn't die you can have multiple nodes connected to the same service to handle the load
+
+You can scale up or down the amount of nodes connected to the service depending on the load
+
+If one pod dies it will forward the request to the other pod
+
+But we can't do this for Databases because they have state and we can't have two databases with the same state
+
+So we use a stateful set
+Meant for stateful apps like mysql or mongodb.
+
+It will create a pod with a unique name and a unique network identity. There won't be any inconsistencies between the pods
+
+It is a little bit hard to deploy with stateful set so it's recommend to host DBs outside of the Kubernetes cluster
+
+..--.. Components summary ..--..
+
+Pods,Service,Ingress,Ingress,ConfigMap,Secret,Volume,StatefulSet 
+
+There is lots more but theses should be enough to build a strong application
+
+..--.. Minikube and kubectl ..--..
+
+Minikube is a tool that makes it easy to run Kubernetes locally
+
+One node has the master processes and the worker processes and will run through a virtual machine
+
+Kubectl is a command line tool that allows you to run commands against Kubernetes clusters
+
+You can talk to the server api like an UI or an API or a CLI like 
+Kubectl (the most powerful of the three)
+
+Kubectl isint only for Minikube it can be used for any Kubernetes cluster
+
+Installing kubectl is through the powershell with commands and is straightforward
+
+..--.. Minikube commands ..--..
+
+minikube start (starts the cluster)
+
+minikube status (checks the status of the cluster)
+
+minikube stop (stops the cluster)
+
+minikube delete (deletes the cluster)
+
+minikube dashboard (opens the dashboard)
+
+..--.. Kubectl commands ..--..
+
+kubectl get nodes (gets the nodes)
+
+kubectl get pods (gets the pods)
+
+kubectl get services (gets the services)
+
+kubectl get deployments (gets the deployments)
+or
+kubectl get deployment (gets the deployments)
+
+kubectl get configmaps (gets the configmaps)
+
+kubectl get secrets (gets the secrets)
+
+kubectl get ingress (gets the ingress)
+
+kubectl get volumes (gets the volumes)
+
+to create a deployment
+kubectl create deployment <name> --image=<image name>
+
+kubectl get logs <pod name> (gets the logs of a pod)
+
+kubectl exec -it <pod name> -- /bin/sh (executes a command in a pod)
+
+kubectl describe pod <pod name> (describes a pod)
+
+kubectl describe service <service name> (describes a service)
+
+kubectl apply -f <file name> (applies a file)
+
+kubectl apply -f config-map.yaml (applies a config map)
+
+kubectl delete -f <file name> (deletes a file)
+
+A config-map should have the name, replicas of thepods and the image and the port
+
+kubectl get all (gets everything)
+
+
+
+
+
+
+
+
+

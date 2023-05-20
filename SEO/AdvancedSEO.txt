@@ -1,0 +1,32 @@
+SEO stands for Search Engine Optimization
+
+SEO is the process of improving the visibility of a website or a web page in search engines via the “natural” or un-paid (“organic” or “algorithmic”) search results.
+
+Crawl budget is the number of pages Google will crawl on your site on any given day.
+
+The higher you website's quality is, and the more you update it regularly, the more Google will crawl your website.
+
+Download time is the time it takes for a browser to download a page after it has received the page's URL from a server: the shorter the download time, the better.
+
+You should also analyze your logs to see how often Googlebot crawls your site and how many pages it downloads each day, and if it has any problems while doing so.
+
+Canonical tag is a tag that tells search engines that a specific URL represents the master copy of a page.
+
+Using the canonical tag prevents problems caused by identical or "duplicate" content appearing on multiple URLs.
+
+< link rel="canonical" href="http://www.example.com/product.php?item=swedish-fish" />
+
+The canonical tag can be used on any page, even if it's not duplicate content.
+
+Caching is the process of storing copies of web pages in a cache so that they can be accessed more quickly. Caching is used to reduce bandwidth usage, server load, and perceived lag.
+
+To use caching, you need to set an expiry date or a maximum age in the HTTP headers for static resources. 
+A full example of this can be found here: https://web.dev/http-cache/#cache-control
+
+There's two different caches: Cache-Control and Expires.
+
+For the languages, you should always use the hreflang tag. It's a tag that tells Google which language the page is in.
+
+< link rel="alternate" hreflang="en" href="http://www.example.com/" />
+
+The hreflang tag can be used on any page, even if it's not duplicate content.
