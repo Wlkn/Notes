@@ -1,0 +1,185 @@
+___---====---___ AWS ___---====---___
+
+
+The relationship between servers and cloud computing:
+
+Servers are computers that provide services to other computers or devices. 
+Cloud computing is a way of delivering computing services over the internet. 
+Instead of hosting applications and data on local servers, cloud computing allows users to access these resources remotely through a network of servers hosted by a third-party provider.
+In short, cloud computing relies on servers to provide computing services over the internet.
+
+The power of the cloud lies in the flexibility it provides for engineers and developers. You no longer rent a machine for a fixed period of time. You simply rent the processing power you need.
+
+The cloud is still built on physical machines, you just delegate the server management to a third party.
+
+The supplier’s responsibility varies depending on which service they provide. The more control you have over your service components, the more responsibility you have.
+
+Different types of cloud computing:
+
+Infrastructure as a service (IaaS): A cloud provider manages the infrastructure, while you purchase, install, configure, and manage your own software—operating systems, middleware, and applications.
+
+Analogy: imagine that you’re doing a road trip across the United States with three friends. You need a car, so you contact a car rental company. If the car has any technical problems, you just need to return it to the car rental company and they’ll give you another one. It’s not up to you to resolve problems with the car’s engine.
+
+With IaaS, you’re delegating responsibility for hardware problems. However, if some other friends decide to join you along the way, you’ll need to request additional cars to transport the whole group.
+
+Platform as a service (PaaS): A cloud provider manages the infrastructure and some software, while you manage applications and data.
+
+Analogy: let’s go back to our road trip across the United States with a group of friends. With PaaS, you won’t be renting cars directly with the rental company. You’ll be using the services of a person whose job it is to check that the trip is all running smoothly. Let’s call this person the concierge.
+
+If three new friends join you along the way, the concierge will notice this and will rent a second car without waiting to be asked. If 20 new friends want to join in with the road trip all at once, the concierge will replace the cars with a bus that will be chartered especially for you.
+
+This is exactly what a PaaS service like AWS provides. It checks that the visitors to your site will have the best experience. Servers are added or withdrawn based on traffic. You could even ask for refreshments if you were thirsty!
+
+Software as a service (SaaS): A cloud provider manages the infrastructure and all software, and you manage only your data.
+
+The cloud is a collection of servers that are accessed via the internet.
+
+
+---___---====---___--- AWS Services ___---====---___---
+
+AWS offers a wide range of services. Here are some of the most popular:
+
+Amazon Elastic Compute Cloud (Amazon EC2): A web service that provides secure, resizable compute capacity in the cloud. It is designed to make web-scale cloud computing easier for developers.
+
+Amazon Relational Database Service (Amazon RDS): A web service that makes it easy to set up, operate, and scale a relational database in the cloud.
+
+Amazon Simple Storage Service (Amazon S3): A web service that provides object storage through a web service interface.
+
+Amazon Identity and Access Management (Amazon IAM): A web service that helps you securely control access to AWS resources for your users. You use IAM to control who can use your AWS resources (authentication) and what resources they can use and in what ways (authorization).
+
+Lambda is a serverless computing service that runs your code in response to events and automatically manages the underlying compute resources for you.
+
+
+---___---====---___--- Launch you first lightsail server ___---====---___---
+
+Amazon Lightsail is the easiest way to get started with AWS. It offers virtual servers, storage, databases, and networking, plus a cost-effective, monthly plan. You can use Lightsail to build websites, web applications, test and stage applications, and much more.
+
+
+---___---====---___--- AWS EC2 ___---====---___---
+
+Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides resizable compute capacity in the cloud. It is designed to make web-scale cloud computing easier for developers.
+
+Instances: A virtual server in the cloud. It is a virtual machine (VM) that runs on a physical machine, known as a host. Each host can have multiple instances running on it.
+
+Images: A template that contains the software configuration (for example, an operating system, an application server, and applications) required to launch your instance. You can launch instances from an AMI in your AWS account.
+
+Instance types: The hardware configuration of an instance. Each instance type offers different compute, memory, and storage capabilities and are grouped in instance families based on these capabilities.
+
+Elastic Block Store (EBS): A virtual hard disk in the cloud. It is a virtual disk that you can attach to your instance. It allows you to create a file system, install software, and store any data on your instance.
+
+Network and security: 
+
+Security groups: are the security rules that you want to apply to ingoing and outgoing traffic on your servers. This is how you would set up a firewall to protect your servers.
+
+Elastic IP addresses allow you to assign a static public IP address to your servers. This is useful because, by default, when a server is restarted, it will usually change its public IP address. With Elastic IPs, you can set it up so that your server retains the same IP address (which is crucial if you want to host a website properly!).
+
+Key pairs displays the key pairs you created to give you access to the servers via the command line. If you’re already connected to a server using a public/private key, you’ll know what I’m talking about. If not, I would highly recommend that you read this article. Otherwise, you’ll think I’m talking gibberish.
+
+Load balancing: A load balancer distributes incoming traffic across multiple targets, such as Amazon EC2 instances, containers, and IP addresses, in multiple Availability Zones. It can handle the varying load of your application traffic in a single Availability Zone or across multiple Availability Zones. Elastic Load Balancing offers three types of load balancers that all feature the high availability, automatic scaling, and robust security necessary to make your applications fault tolerant.
+
+Amazon Linux AMI: a Linux distribution that is optimized for Amazon EC2. This is essentially the default option.
+
+Ubuntu Server: a server version of a Linux Ubuntu distribution that you can choose if you like.
+
+SUSE Linux: if SUSE is your thing.
+
+Red Hat: if Red Hat is your thing.
+
+Windows Server: if Windows Server is your thing. Be careful, though. It’s not Linux, it’s very different. 
+
+EC2 offers various types of instances with different prices. The t2.micro instance is ideal when you’re starting out, because it’s included in the free tier offer.
+
+An AMI is an image that includes an operating system and optionally some pre-installed tools. All EC2 instances are created using an AMI.
+
+An EBS volume is disk storage that is assigned to an instance.
+
+A security group lets you configure firewall rules, limiting network access to the machine.
+
+To connect to the instance, you need to use a key pair. This is a pair of files: a public key and a private key. The public key is stored on the server, and the private key is stored on your computer. You can use the private key to connect to the server.
+
+mv ~/Downloads/MyKeyPair.pem ~/.ssh/MyKeyPair.pem
+
+chmod 400 ~/.ssh/MyKeyPair.pem
+
+ssh -i "~/.ssh/MyKeyPair.pem" bitnami@ec2-34-226-155-152.compute1.amazonaws.com
+
+Elastic IPs:
+
+An Elastic IP address is a static IPv4 address designed for dynamic cloud computing. An Elastic IP address is associated with your AWS account. With an Elastic IP address, you can mask the failure of an instance or software by rapidly remapping the address to another instance in your account.
+
+How do we link an Elastic IP address to our instance? It’s really very simple. Go to the “Network and Security” section and then “Elastic IPs.”
+
+On this page, you shouldn’t be able to see any IP addresses initially. Click on “Allocate Elastic IP address.” You’ll be asked to confirm. Once this is done, you’ll be given a new IP address
+
+Go to “Actions” > “Associate Elastic IP Address”: In the “Instance” dropdown menu, select the EC2 instance you want to attach the address to.
+And if you have a look at the list of instances, you’ll see that the server’s IP address and DNS address have changed.
+
+
+
+
+There are two solutions for backing up an EC2 instance. Each has pros and cons.
+
+Creating an AMI from your server is the simplest way. The entire contents of the disk and server configuration will be copied. However, each AMI takes up space (and can end up costing money), because all of the server contents are copied each time.
+
+Creating an EBS snapshot (i.e., a disk snapshot) is the cheapest option. Backups are incremental, so the first 10 GB disk backup might use 10 GB while the second might only use 1 GB if only 1 GB has changed since the last backup. The snapshot option is a bit more complicated to set up, because you need to attach the disk to the server (but it’s not too complicated).
+
+Restore Using an AMI
+Has your server crashed? Do you want to travel back in time?
+
+You just need to go to “Images” > “AMI” (see screenshot above), select your backup and click on “Launch.” A new server will then be launched using this AMI, which will restore your server back to the state it was in when the backup was taken.
+
+Delete the Old AMIs
+The more AMIs you store, the more space you use. At some point, you could risk going over the AWS free usage limit. It’s best to do some regular housekeeping of your old AMIs. Go to “Actions” > “Deregister AMI” to delete the AMI.
+
+Your EBS snapshot won’t be automatically deleted, so next you need to navigate to EBS snapshots, then go to “Actions” > “Delete snapshot.” It’s actually these EBS snapshots that take up space, so don’t forget this step!
+
+Back up and Restore an EBS
+It’s a little more complicated to use an EBS snapshot, but it is a cheaper option. This is because the first snapshot will be 10 GB if your disk uses 10 GB, but any subsequent backups only store the changed elements. This is known as incremental backup. So, if one GB of data has changed since your first backup, the second backup will only use one GB.
+
+Back up Using an EBS Snapshot
+Navigate to the “Elastic Block Store” > “Volumes” menu. Select the disk for the instance you want to back up. This part should be easy as you probably only have one volume.
+
+Then click on “Actions” > “Create snapshot.” You’ll be asked to provide a name for the snapshot
+Right, the snapshot has been created.
+
+Once you’ve created your snapshot, it will appear in “Elastic Block Store” > “Snapshots”
+
+Restore Using an EBS Snapshot
+Has your server crashed? Do you need to restore it?
+
+This is where things get a bit tricky. Start by selecting your EBS snapshot and then click on “Actions” > “Create volume”:
+stop the EC2 instance.
+
+detach the “broken” EBS volume currently associated with the instance. From EBS Volumes, go to “Actions” > “Detach volume.”
+
+attach your “clean” EBS volume that was generated from the backup. From EBS Volumes, go to “Actions” > “Attach volume.”
+
+launch the EC2 instance.
+
+delete the “broken” EBS volume, which is no longer needed.
+
+Delete Old EBS Snapshots
+If you don’t want to store loads of backups (which could end up costing you money), you can delete the old backups on the “Snapshots” page.
+
+Because these are incremental backups, they don’t usually take up too much space.
+
+
+---___---====---___--- AWS DBaaS ---___---====---___--- 
+
+Amazon Relational Database Service (Amazon RDS) is a web service that makes it easier to set up, operate, and scale a relational database in the cloud. It provides cost-efficient, resizable capacity for an industry-standard relational database and manages common database administration tasks.
+
+Why use Rds? 
+There’s no need to install database software (MySQL, PostgreSQL, MariaDB, Oracle, etc.). It’s already done for you!
+
+There’s no need to configure your database engine. The basic configuration is all set up and optimized for you.
+
+There’s no need to select appropriate hardware for your servers. Amazon has selected optimized servers suitable for managing databases.
+
+You don’t need to keep your database software up to date. Amazon does this for you. This means you don’t have the stress of installing regular security patches, as it’s all done for you.
+
+You can back up or restore your database in just a few clicks. And that alone is priceless!
+
+You can increase your server power if you need to, depending on your level of traffic (as you can with Amazon EC2).
+
+You can easily replicate a number of database servers (this is when a database is copied in real time to several servers). This will come in handy if your site starts getting big.
+
