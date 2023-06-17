@@ -183,3 +183,35 @@ You can increase your server power if you need to, depending on your level of tr
 
 You can easily replicate a number of database servers (this is when a database is copied in real time to several servers). This will come in handy if your site starts getting big.
 
+
+---___---====---___--- AMAZON WEB SERVICES ---___---====---___---
+
+Manage the AWS Cloud:
+
+AWS Management Console: A web interface that you can use to manage your AWS resources. You can use the console to create, monitor, and manage your AWS resources.
+
+AWS Command Line Interface (AWS CLI): A command-line tool that you can use to manage your AWS resources. You can use the AWS CLI to automate AWS operations with scripts.
+
+``` aws <service> <command> <subcommand> [parameters] ```
+
+<service> is the name of the AWS service, such as ec2 or s3.
+<command> is the name of the AWS CLI command, such as ls or describe.
+<subcommand> is the name of the AWS CLI subcommand, such as instances or buckets.
+[parameters] are the options or arguments for the command.
+
+
+AWS Tools for Windows PowerShell: A PowerShell module that you can use to manage your AWS resources. You can use the AWS Tools for Windows PowerShell to automate AWS operations with scripts.
+
+AWS SDKs: A set of software development kits (SDKs) that you can use to interact with AWS services and develop applications. The SDKs provide a convenient way to create programmatic access to AWS and other AWS services. The SDKs provide a convenient way to create programmatic access to AWS and other AWS services.
+
+
+---___---====---___--- AWS VPC ---___---====---___---
+
+A virtual private cloud (VPC) is a virtual network dedicated to your AWS account. It is logically isolated from other virtual networks in the AWS Cloud. You can launch your AWS resources, such as Amazon EC2 instances, into your VPC.
+
+When you create a VPC, you must specify a range of IPv4 addresses for the VPC in the form of a Classless Inter-Domain Routing (CIDR) block; for example,
+
+CIDR block ( Classless Inter-Domain Routing ) is a method for allocating IP addresses and IP routing. The IP addresses are grouped into a set of contiguous sub-blocks, each sub-block containing a set number of addresses. CIDR notation is a compact representation of an IP address and its associated routing prefix.
+
+Subnets: A range of IP addresses in your VPC. You can launch AWS resources into a specified subnet. Use a public subnet for resources that must be connected to the internet, and a private subnet for resources that won't be connected to the internet.
+

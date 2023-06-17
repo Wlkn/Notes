@@ -1,0 +1,517 @@
+Install Electron:
+
+```npm i -D electron@latest```
+
+To start the app:
+
+```npm start```
+
+To build the app:
+
+```npm run build```
+
+Debugging: 
+    
+    ```npm run debug```
+
+    and type debugger in the code where you want to debug
+
+    ```debugger```
+/
+
+
+Resetting the Project code:
+
+ ```git reset --hard```
+
+ ```git clean -df```
+
+ ```git pull```
+
+ ```npm install```
+
+ ```npm start```
+
+ /
+
+ Dialog:
+
+ mainWindow.webContents.on('did-finish-load', () => {
+    dialog.showMessageBox(mainWindow, {
+        type: 'info',
+        title: 'Information',
+        message: 'This is an information dialog. Isn\'t it nice?',
+        buttons: ['Yes', 'No']
+    }, (clickedIndex) => {
+        console.log(clickedIndex)
+    })
+})
+
+/
+
+Menu:
+
+const menu = Menu.buildFromTemplate([
+    {
+        label: 'Menu',
+        submenu: [
+            {
+                label: 'Adjust Notification Value'
+            },
+            {
+                label: 'CoinMarketCap',
+                click() {
+                    shell.openExternal('http://coinmarketcap.com')
+                }
+            },
+            {
+                type: 'separator'
+            },
+            {
+                label: 'Exit',
+                click() {
+                    app.quit()
+                }
+            }
+        ]
+    },
+    {
+        label: 'Info'
+    }
+])
+
+Menu.setApplicationMenu(menu)
+
+/
+
+Tray:
+
+const tray = new Tray('./assets/images/iconTemplate.png')
+
+const trayMenu = Menu.buildFromTemplate([
+    {
+        label: 'Wow',
+        click() {
+            console.log('Wow')
+        }
+    },
+    {
+        label: 'Awesome',
+        click() {
+            console.log('Awesome')
+        }
+    }
+])
+
+tray.setContextMenu(trayMenu)
+
+tray.setToolTip('My application')
+
+tray.on('click', () => {
+    console.log('clicked')
+})
+
+/
+
+Power Monitor:
+
+powerMonitor.on('suspend', () => {
+    console.log('The system is going to sleep')
+})
+
+powerMonitor.on('resume', () => {
+    console.log('The system is resuming')
+})
+
+/
+
+Screen:
+
+screen.on('display-added', () => {
+    console.log('New display has been added')
+})
+
+screen.on('display-removed', () => {
+    console.log('A display has been removed')
+})
+
+screen.on('display-metrics-changed', () => {
+    console.log('Display metrics have changed')
+})
+
+Use the following code to get the screen size:
+
+const { width, height } = screen.getPrimaryDisplay().workAreaSize
+
+/
+
+BrowserWindow:
+
+const mainWindow = new BrowserWindow({
+    width: 1000,
+    height: 600,
+    webPreferences: {
+        nodeIntegration: true
+    }
+})
+
+mainWindow.loadURL(`file://${__dirname}/index.html`)
+
+mainWindow.on('closed', () => {
+    console.log('closed')
+})
+
+/
+
+Session and Cookies:
+
+const ses = session.defaultSession
+
+ses.cookies.get({})
+    .then(cookies => console.log(cookies))
+    .catch(error => console.log(error))
+
+ses.cookies.set({
+
+})
+    .then(() => {
+        console.log('success')
+    }, (error) => {
+        console.error(error)
+    })
+
+/
+
+WebFrame(The webFrame module provides an interface for rendering and controlling the frame of a renderer process. ):
+
+webFrame.setZoomFactor(2)
+
+webFrame.setZoomLevel(300)
+
+webFrame.setVisualZoomLevelLimits(1, 20)
+
+webFrame.setLayoutZoomLevelLimits(50, 100)
+
+/
+
+Desktop Capturer(The desktopCapturer module provides functions to capture the screen or individual windows, and returns MediaStream object which can be used as a source of WebRTC peerConnection. ):
+
+desktopCapturer.getSources({
+    types: ['window', 'screen']
+}).then((sources) => {
+    console.log(sources)
+}).catch((error) => {
+    console.log(error)
+})
+
+/
+
+ipcMain(The ipcMain module is an Event Emitter. When used in the main process, it handles asynchronous and synchronous messages sent from a renderer process (web page). When used in the renderer process, it handles asynchronous and synchronous messages sent from the main process. )
+
+ipcMain.on('channel1', (event, arg) => {
+    console.log(arg)
+    event.reply('channel1', 'hi from main')
+})
+
+/
+
+ipcRenderer(The ipcRenderer module provides a few methods so you can send synchronous and asynchronous messages from the renderer process (web page) to the main process. You can also receive replies from the main process.)
+
+ipcRenderer.send('channel1', 'hi from renderer')
+
+ipcRenderer.on('channel1', (event, arg) => {
+    console.log(arg)
+})
+
+/
+
+Remote(The remote module provides a simple way to do inter-process communication (IPC) between the renderer process (web page) and the main process.):
+
+const { BrowserWindow } = require('electron').remote
+
+const win = new BrowserWindow({
+    width: 400,
+    height: 400
+})
+
+win.loadURL('https://google.com')
+
+/
+
+IPC Invoke and Handle(The ipcMain module handles asynchronous messages sent from a renderer process (web page) to the main process. This module is used in the main process only. )
+
+ipcMain.handle('channel1', (event, arg) => {
+    console.log(arg)
+    return 'some data from main'
+})
+
+ipcRenderer.invoke('channel1', 'some data from renderer')
+    .then((result) => {
+        console.log(result)
+    })
+    .catch((error) => {
+        console.log(error)
+    })
+
+/
+
+Process(The process object is a global that provides information about, and control over, the current Node.js process. As a global, it is always available to Node.js applications without using require().)
+
+console.log(process.type)
+
+console.log(process.versions)
+
+console.log(process.platform)
+
+
+/
+
+Shell(The shell module provides functions related to desktop integration. An example of using this module is the openItem() function, which will open the given file in the desktop's default manner.)
+
+shell.openPath('C:\\Users\\User\\Desktop\\electron\\electron-quick-start\\index.html')
+
+shell.showItemInFolder('C:\\Users\\User\\Desktop\\electron\\electron-quick-start\\index.html')
+
+shell.beep()
+
+/
+
+Native Image(The nativeImage module is used to create images from native image resources.)
+
+const nativeImage = require('electron').nativeImage
+
+const image = nativeImage.createFromPath('./assets/images/iconTemplate.png')
+
+console.log(image.getSize())
+
+/
+
+Clipboard(The clipboard module provides methods to perform copy, cut and paste operations on the system clipboard. This module is only available in the renderer process. )
+
+clipboard.writeText('Hello from clipboard')
+
+console.log(clipboard.readText())
+
+/
+
+Offscreen Rendering(The offscreen rendering module is used to render content offscreen and can be used to easily convert contents into images.)
+
+const { offscreen } = require('electron')
+
+const win = new BrowserWindow({
+    width: 400,
+    height: 400,
+    show: false
+})
+
+win.loadURL('https://google.com')
+
+win.webContents.on('paint', (event, dirty, image) => {
+    console.log(dirty, image)
+    const buffer = image.toPNG()
+    fs.writeFile('./assets/images/google.png', buffer, () => {
+        console.log('saved')
+    })
+})
+
+win.webContents.setFrameRate(30)
+
+win.webContents.beginFrameSubscription()
+
+setTimeout(() => {
+    win.webContents.endFrameSubscription()
+}, 5000)
+
+/
+
+Network Detection for Online/Offline Status(The online-status module is used to detect whether the renderer process is online or offline.)
+
+navigator.onLine ? console.log('online') : console.log('offline')
+
+/
+
+Notification(The Notification module is used to send native notifications to the operating system. This module is only available in the renderer process. )
+
+const notification = {
+    title: 'Basic Notification',
+    body: 'Notification from the Main process'
+}
+
+new Notification(notification).show()
+    
+/
+
+Preload scripts (The preload script is loaded before other scripts run in the page. It has the same privileges as Chrome extension scripts, runs in the same process as the web page and has access to the same DOM.)
+
+const { BrowserWindow } = require('electron')
+
+const win = new BrowserWindow({
+    width: 400,
+    height: 400,
+    webPreferences: {
+        nodeIntegration: true,
+        preload: './preload.js'
+    }
+})
+
+win.loadURL(`file://${__dirname}/index.html`)
+
+/
+
+Progress Bar(The progress-bar module is used to create a progress bar in the taskbar to show the progress of a task. This module is only available in the renderer process. )
+
+const { ProgressBar } = require('electron')
+
+const bar = new ProgressBar({
+    text: 'Loading...',
+    detail: 'Wait...',
+    browserWindow: {
+        webPreferences: {
+            nodeIntegration: true
+        }
+    }
+})
+
+let progress = 0
+
+bar
+    .on('completed', () => {
+        console.log('completed')
+    })
+    .on('aborted', () => {
+        console.log('aborted')
+    })
+
+const timer = setInterval(() => {
+    progress += 1
+    bar.value = progress / 100
+
+    if (progress === 100) {
+        clearInterval(timer)
+        bar.close()
+    }
+}, 100)
+
+/
+
+Electron builder:
+
+npm install -g electron-builder
+
+electron-builder --version
+
+electron-builder init
+
+npm run dist
+
+/
+
+Electron packager:
+
+npm install -g electron-packager
+
+electron-packager --version
+
+electron-packager . --platform=win32 --arch=x64 --out=dist
+
+/
+
+In the package.json file:
+
+"build": {
+    "appId": "com.electron.electron-quick-start",
+    "productName": "electron-quick-start",
+    "directories": {
+      "output": "build"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "assets/images/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "assets/images/icon.icns"
+    },
+
+  }
+
+electron-builder --win --x64
+
+electron-builder --mac --x64
+
+electron-builder --linux --x64
+
+electron builder -mwl (for all platforms)
+
+/
+
+App updates:
+
+npm install electron-updater --save-dev
+
+const { autoUpdater } = require('electron-updater')
+
+autoUpdater.checkForUpdatesAndNotify()
+
+autoUpdater.on('update-available', () => {
+    console.log('update available')
+})
+
+autoUpdater.on('update-downloaded', () => {
+    console.log('update downloaded')
+})
+
+TO remove the fact that it downloads without asking the user:
+
+autoUpdater.autoDownload = false
+
+autoUpdater.on('update-available', () => {
+    autoUpdater.downloadUpdate()
+})
+
+ASK the user:
+
+autoUpdater.on('update-available', () => {
+    dialog.showMessageBox({
+        type: 'info',
+        title: 'Update available',
+        message: 'A new version is available. Do you want to update now?',
+        buttons: ['Update', 'No']
+    }).then((result) => {
+        let buttonIndex = result.response
+        if (buttonIndex === 0) {
+            autoUpdater.downloadUpdate()
+        }
+    })
+})
+
+
+/
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
